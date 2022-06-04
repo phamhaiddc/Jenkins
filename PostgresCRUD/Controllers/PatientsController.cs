@@ -29,6 +29,7 @@ namespace PostgresCRUD.Controllers
             if (ModelState.IsValid)
             {
                 Guid obj = Guid.NewGuid();
+                
                 patient.id = obj.ToString();
                 _dataAccessProvider.AddPatientRecord(patient);
                 return Ok();
