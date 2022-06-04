@@ -1,0 +1,9 @@
+E:\PostgresCRUD\ClassLibrary1\bin\Debug\netcoreapp3.1\NameLib.deps.json
+E:\PostgresCRUD\ClassLibrary1\bin\Debug\netcoreapp3.1\NameLib.dll
+E:\PostgresCRUD\ClassLibrary1\bin\Debug\netcoreapp3.1\NameLib.pdb
+E:\PostgresCRUD\ClassLibrary1\obj\Debug\netcoreapp3.1\NameLib.GeneratedMSBuildEditorConfig.editorconfig
+E:\PostgresCRUD\ClassLibrary1\obj\Debug\netcoreapp3.1\NameLib.AssemblyInfoInputs.cache
+E:\PostgresCRUD\ClassLibrary1\obj\Debug\netcoreapp3.1\NameLib.AssemblyInfo.cs
+E:\PostgresCRUD\ClassLibrary1\obj\Debug\netcoreapp3.1\NameLib.csproj.CoreCompileInputs.cache
+E:\PostgresCRUD\ClassLibrary1\obj\Debug\netcoreapp3.1\NameLib.dll
+E:\PostgresCRUD\ClassLibrary1\obj\Debug\netcoreapp3.1\NameLib.pdb
