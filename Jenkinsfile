@@ -12,15 +12,14 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Docker image using the Dockerfile
-                sh'cd WebApi'
-                sh'dotnet build "WebApi.csproj"'
+                sh'dotnet build ./WebApi/WebApi.csproj'
             }
         }
 
         stage('Test') {
             steps {
                 // Run unit tests or any other testing steps as needed
-                sh 'docker run WebApi:${env.BUILD_ID} dotnet test'
+                sh 'docker run WebApi.csproj:${env.BUILD_ID} dotnet test'
             }
         }
     }
