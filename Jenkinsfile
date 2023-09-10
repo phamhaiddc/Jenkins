@@ -12,9 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Docker image using the Dockerfile
-                script {
-                    def dockerImage = docker.build("WebApi:${env.BUILD_ID}", "-f Dockerfile .")
-                }
+                sh'cd WebApi'
+                sh'dotnet build "WebApi.csproj"'
             }
         }
 
