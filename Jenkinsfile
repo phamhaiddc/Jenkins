@@ -13,7 +13,9 @@ pipeline {
             steps {
                 // Build the Docker image using the Dockerfile
                 //sh'dotnet build ./WebApi/WebApi.csproj'
-                sh 'ls'
+                script{
+                    dotnet build ./WebApi/WebApi.csproj
+                }
             }
         }
 
