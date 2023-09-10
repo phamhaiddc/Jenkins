@@ -5,7 +5,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the Git repository
-                checkout https://github.com/phamhaiddc/jenkins.git
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/phamhaiddc/jenkins.git']]])
             }
         }
@@ -32,7 +31,7 @@ pipeline {
             // Clean up Docker images and containers
             cleanWs()
             script {
-                docker.image("my-dotnet-app:${env.BUILD_ID}").remove()
+                docker.image("WebApi:${env.BUILD_ID}").remove()
             }
         }
     }
