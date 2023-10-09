@@ -44,16 +44,17 @@ pipeline {
 
                         // Change the working directory to the project's subdirectory
                         dir(subdirectory) {
-                            def dockerImage = 'WebAPI_images'
-                            def dockerTag = 'latest'
+                           script {
+                                def dockerImage = docker.build('WebAPI:latest')
 
-                            // Build the Docker image from the specified Dockerfile
-                            bat "def dockerImage = docker.build('WebAPI_images:latest')
-"
+                                // Run the Docker container from the built image
+                                def container = dockerImage.run('-d --name WebAPI')
 
-                            // Run the Docker container from the built image
-                            bat "dockerImage.run('-d --name WebAPI_images_latest')"
+                                // Remove the Docker container when done
+                                container.remove()
+                            }
                         }
+                        
 
                     }   
 
