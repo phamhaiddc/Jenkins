@@ -48,10 +48,11 @@ pipeline {
                             def dockerTag = 'latest'
 
                             // Build the Docker image from the specified Dockerfile
-                            bat "docker build -t ${dockerImage}:${dockerTag} ."
+                            bat "def dockerImage = docker.build('WebAPI_images:latest')
+"
 
                             // Run the Docker container from the built image
-                            bat "docker run -d --name ${dockerImage}_${dockerTag} ${dockerImage}:${dockerTag}"
+                            bat "dockerImage.run('-d --name WebAPI_images_latest')"
                         }
 
                     }   
