@@ -34,23 +34,30 @@ pipeline {
         }
 
         stage('Build Image') {
+            
             steps {
-                    def subdirectory = 'WebApplication1'
 
-                    // Change the working directory to the project's subdirectory
-                    dir(subdirectory) {
-                        def dockerImage = 'WebAPI_images'
-                        def dockerTag = 'latest'
+                script{
+                    steps {
+                        def subdirectory = 'WebApplication1'
 
-                        // Build the Docker image from the specified Dockerfile
-                        bat "docker build -t ${dockerImage}:${dockerTag} ."
+                        // Change the working directory to the project's subdirectory
+                        dir(subdirectory) {
+                            def dockerImage = 'WebAPI_images'
+                            def dockerTag = 'latest'
 
-                        // Run the Docker container from the built image
-                        bat "docker run -d --name ${dockerImage}_${dockerTag} ${dockerImage}:${dockerTag}"
-                    }
+                            // Build the Docker image from the specified Dockerfile
+                            bat "docker build -t ${dockerImage}:${dockerTag} ."
+
+                            // Run the Docker container from the built image
+                            bat "docker run -d --name ${dockerImage}_${dockerTag} ${dockerImage}:${dockerTag}"
+                        }
+
+                    }   
+
+                }   
 
             }
-
         }
     }
     
