@@ -12,27 +12,22 @@ pipeline {
             steps {
                 // Build the Docker image using the Dockerfile
                 script {
-                    def dotnetCommand = bat(script: 'dotnet --version', returnStatus: true)
-                    if (dotnetCommand == 0) {
-                        def currentDir = pwd()
-                        echo "Current Directory: ${currentDir}"
+                    def subdirectory = 'jenkins/WebApplication1'
 
-
-                        // Use a shell command to list files in the current directory
-                        def fileList = sh(script: "ls ${currentDir}", returnStdout: true).trim()
-
-                        // Print the list of files
-                        echo "List of files in ${currentDir}:"
-                        echo fileList
-
-
-                        bat 'dotnet restore'
-                        bat 'dotnet build'
-                        // Add additional commands as needed (e.g., dotnet test)
-                    } else {
-                        error 'dotnet CLI is not installed. Install it on your Jenkins agent.'
+                    // Change the working directory to the project's subdirectory
+                    dir(subdirectory) {
+                        // Now you're in the 'src/webapplication1' directory
+                        script {
+                            def dotnetCommand = bat(script: 'dotnet --version', returnStatus: true)
+                            if (dotnetCommand == 0) {
+                                bat 'dotnet restore'
+                                bat 'dotnet build'
+                                // Add additional commands as needed (e.g., dotnet test)
+                            } else {
+                                error 'dotnet CLI is not installed. Install it on your Jenkins agent.'
+                            }
+                        }
                     }
-                }
 
             }
         }
