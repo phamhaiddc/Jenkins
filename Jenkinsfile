@@ -41,7 +41,7 @@ pipeline {
                     def dockerTag = 'latest'
 
                     // Build the Docker image from the Dockerfile in the project directory
-                    sh "docker build -t ${dockerImage}:${dockerTag} -f ${dockerfilePath} ."
+                    bat "docker build -t ${dockerImage}:${dockerTag} -f ${dockerfilePath} ."
                 }    
             }    
         }
