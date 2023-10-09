@@ -47,7 +47,7 @@ pipeline {
                         }
 
                         // Build the Docker image from the Dockerfile in the project directory
-                        bat 'docker build -t jenkins_docker:v1 .'
+                        bat 'docker build -t jenkins_docker:latest .'
                     }    
                 }    
             }
