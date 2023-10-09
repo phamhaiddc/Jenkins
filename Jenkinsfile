@@ -36,17 +36,23 @@ pipeline {
         stage('Build Image') {
             steps{
                 script {
-                    def dockerfilePath = 'WebApplication1/WebApplication1' // Assuming Dockerfile is in the root of the project
-                    def dockerImage = 'jenkins_docker'
-                    def dockerTag = 'latest'
+                    script {
+                        def subdirectory = 'WebApplication1'
 
-                    // Build the Docker image from the Dockerfile in the project directory
-                    bat "docker build -t ${dockerImage}:${dockerTag} -f ${dockerfilePath} ."
+                        // Change the working directory to the project's subdirectory
+                        dir(subdirectory) {
+                            def dockerfilePath = 'WebApplication1/WebApplication1' // Assuming Dockerfile is in the root of the project
+                            def dockerImage = 'jenkins_docker'
+                            def dockerTag = 'latest'
+                        }
+
+                        // Build the Docker image from the Dockerfile in the project directory
+                        bat "docker build -t ${dockerImage}:${dockerTag} ."
+                    }    
                 }    
-            }    
+            }
         }
     }
-    
 
     post {
         always {
