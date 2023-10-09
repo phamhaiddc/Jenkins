@@ -16,8 +16,18 @@ pipeline {
                     if (dotnetCommand == 0) {
                         def currentDir = pwd()
                         echo "Current Directory: ${currentDir}"
-                        bat 'dotnet restore "jenkins/WebApplication1/WebApplication1.csproj"'
-                        bat 'dotnet build "jenkins/WebApplication1/WebApplication1.csproj"'
+
+
+                        // Use a shell command to list files in the current directory
+                        def fileList = sh(script: "ls ${currentDir}", returnStdout: true).trim()
+
+                        // Print the list of files
+                        echo "List of files in ${currentDir}:"
+                        echo fileList
+
+
+                        bat 'dotnet restore'
+                        bat 'dotnet build'
                         // Add additional commands as needed (e.g., dotnet test)
                     } else {
                         error 'dotnet CLI is not installed. Install it on your Jenkins agent.'
