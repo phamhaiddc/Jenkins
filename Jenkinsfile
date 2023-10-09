@@ -34,7 +34,7 @@ pipeline {
         }
 
         stage('Build Image') {
-            
+            steps{
                 script {
                     def dockerfilePath = 'WebApplication1/WebApplication1' // Assuming Dockerfile is in the root of the project
                     def dockerImage = 'jenkins_docker'
@@ -42,7 +42,8 @@ pipeline {
 
                     // Build the Docker image from the Dockerfile in the project directory
                     sh "docker build -t ${dockerImage}:${dockerTag} -f ${dockerfilePath} ."
-                }        
+                }    
+            }    
         }
     }
     
