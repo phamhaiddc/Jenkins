@@ -5,8 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the Git repository
-                                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'phamhaiddc', url: 'https://github.com/phamhaiddc/jenkins.git']]])
-            }
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins_1', url: 'https://github.com/phamhaiddc/jenkins.git']]])            }
         }
 
         stage('Build') {
