@@ -37,6 +37,8 @@ pipeline {
             steps{
                 script {
                     script {
+                        def currentPath = pwd()
+                        echo "Current Path: ${currentPath}"
                         def subdirectory = 'WebApplication1/WebApplication1'
 
                         // Change the working directory to the project's subdirectory
