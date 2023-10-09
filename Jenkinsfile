@@ -47,7 +47,7 @@ pipeline {
                         }
 
                         // Build the Docker image from the Dockerfile in the project directory
-                        bat 'docker build -t Dockerfile:latest .'
+                        bat 'docker build -t dockerfile:latest .'
                     }    
                 }    
             }
