@@ -33,10 +33,21 @@ pipeline {
         }
         }
 
-        stage('Test') {
-            steps {
-                // Run unit tests or any other testing steps as needed
-                sh 'docker run WebApi.csproj:${env.BUILD_ID} dotnet test'
+       steps {
+            def subdirectory = 'WebApplication1'
+
+             // Change the working directory to the project's subdirectory
+            dir(subdirectory) {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    // Define Docker image and tag
+                    def dockerImage = 'Web_API1'
+                    def dockerTag = 'latest'
+                    
+                    // Build the Docker image
+                    bat "docker build -t ${dockerImage}:${dockerTag} ."
+                }
+            }
+
             }
         }
     }
