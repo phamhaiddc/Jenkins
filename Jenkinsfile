@@ -40,13 +40,13 @@ pipeline {
                         def subdirectory = 'WebApplication1/WebApplication1'
 
                         // Change the working directory to the project's subdirectory
-                        dir(subdirectory) {
+                        //dir(subdirectory) {
                             def dockerfilePath = 'WebApplication1/WebApplication1' // Assuming Dockerfile is in the root of the project
                             def dockerImage = 'jenkins_docker'
                             def dockerTag = 'latest'
-                            bat 'docker build -t dockerfile:latest .'
+                            bat 'docker build -t dockerfile:latest ./WebApplication1/WebApplication1'
 
-                        }
+                        //}
 
                     }    
                 }    
