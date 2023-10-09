@@ -43,10 +43,10 @@ pipeline {
                         def dockerTag = 'latest'
 
                         // Build the Docker image from the specified Dockerfile
-                        sh "docker build -t ${dockerImage}:${dockerTag}"
+                        bat "docker build -t ${dockerImage}:${dockerTag} ."
 
                         // Run the Docker container from the built image
-                        sh "docker run -d --name ${dockerImage}_${dockerTag} ${dockerImage}:${dockerTag}"
+                        bat "docker run -d --name ${dockerImage}_${dockerTag} ${dockerImage}:${dockerTag}"
                     }
 
             }
