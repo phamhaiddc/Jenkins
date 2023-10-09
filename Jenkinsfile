@@ -14,7 +14,8 @@ pipeline {
                 script {
                     def dotnetCommand = bat(script: 'dotnet --version', returnStatus: true)
                     if (dotnetCommand == 0) {
-                        bat 'ls'
+                        def currentDir = pwd()
+                        echo "Current Directory: ${currentDir}"
                         bat 'dotnet restore'
                         bat 'dotnet build'
                         // Add additional commands as needed (e.g., dotnet test)
