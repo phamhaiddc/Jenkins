@@ -12,7 +12,7 @@ pipeline {
             steps {
                 // Build the Docker image using the Dockerfile
                 script {
-                    def subdirectory = 'jenkins/WebApplication1'
+                    def subdirectory = 'WebApplication1'
 
                     // Change the working directory to the project's subdirectory
                     dir(subdirectory) {
