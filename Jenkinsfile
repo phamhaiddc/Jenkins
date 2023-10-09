@@ -35,27 +35,14 @@ pipeline {
 
         stage('Build Image') {
             
-            steps {
+                script {
+                    def dockerfilePath = 'WebApplication1/WebApplication1' // Assuming Dockerfile is in the root of the project
+                    def dockerImage = 'jenkins_docker'
+                    def dockerTag = 'latest'
 
-                 script {
-                    def dockerImage = docker.build('webapi:latest')
-
-                    // Run the Docker container from the built image
-                    def container = dockerImage.run('-d --name api_container')
-
-                    // Remember the image ID for removal
-                    def imageId = dockerImage.imageId
-
-                    // Perform other tasks with the container
-
-                    // Remove the Docker container when done
-                    container.remove()
-
-                    // Remove the Docker image using the 'docker rmi' command
-                    sh "docker rmi ${imageId}"
-                }
-
-            }
+                    // Build the Docker image from the Dockerfile in the project directory
+                    sh "docker build -t ${dockerImage}:${dockerTag} -f ${dockerfilePath} ."
+                }        
         }
     }
     
