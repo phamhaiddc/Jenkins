@@ -38,8 +38,9 @@ pipeline {
             steps {
 
                 script{
+                    def subdirectory = 'WebApplication1'
+
                     steps {
-                        def subdirectory = 'WebApplication1'
 
                         // Change the working directory to the project's subdirectory
                         dir(subdirectory) {
