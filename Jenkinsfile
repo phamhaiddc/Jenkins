@@ -12,9 +12,16 @@ pipeline {
             steps {
                 // Build the Docker image using the Dockerfile
                 script {
-                    dotnet build ./WebApi/WebApi.csproj
+                    def dotnetCommand = bat(script: 'dotnet --version', returnStatus: true)
+                    if (dotnetCommand == 0) {
+                        bat 'dotnet restore'
+                        bat 'dotnet build'
+                        // Add additional commands as needed (e.g., dotnet test)
+                    } else {
+                        error 'dotnet CLI is not installed. Install it on your Jenkins agent.'
+                    }
                 }
-               
+
             }
         }
 
