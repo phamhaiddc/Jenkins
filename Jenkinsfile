@@ -37,28 +37,23 @@ pipeline {
             
             steps {
 
-                script{
-                    def subdirectory = 'WebApplication1'
+                 script {
+                    def dockerImage = docker.build('webapi:latest')
 
-                    steps {
+                    // Run the Docker container from the built image
+                    def container = dockerImage.run('-d --name api_container')
 
-                        // Change the working directory to the project's subdirectory
-                        dir(subdirectory) {
-                           script {
-                                def dockerImage = docker.build('WebAPI:latest')
+                    // Remember the image ID for removal
+                    def imageId = dockerImage.imageId
 
-                                // Run the Docker container from the built image
-                                def container = dockerImage.run('-d --name WebAPI')
+                    // Perform other tasks with the container
 
-                                // Remove the Docker container when done
-                                container.remove()
-                            }
-                        }
-                        
+                    // Remove the Docker container when done
+                    container.remove()
 
-                    }   
-
-                }   
+                    // Remove the Docker image using the 'docker rmi' command
+                    sh "docker rmi ${imageId}"
+                }
 
             }
         }
